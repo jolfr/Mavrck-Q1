@@ -38,3 +38,6 @@ out/
 
 ### Jupyter Notebook Checkpoints ###
 .ipynb_checkpoints
+
+### Data Files ###
+*.csv
