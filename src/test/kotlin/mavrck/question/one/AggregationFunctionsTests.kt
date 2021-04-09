@@ -27,4 +27,5 @@ class AggregationFunctionsTests {
         val testFunc = testObject.PrintRowFactory()
         assertTrue(testFunc is KFunction)
     }
+}
 

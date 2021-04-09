@@ -4,13 +4,13 @@ import java.lang.IllegalArgumentException
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.Assertions.*
 import org.springframework.boot.test.context.SpringBootTest
+import kotlin.reflect.*
 
 @SpringBootTest
 class FileProcessorTests {
     @Test
     fun `object initializes`() {
-        val testAggFunc = fun (_ : Array<List<String>?>){} // MOCKS!!!
-        val processor = FileProcessor("testPath", testAggFunc)
+        val processor = FileProcessor("testPath")
         assertNotNull(processor)
     }
 
@@ -20,10 +20,10 @@ class FileProcessorTests {
 
     @Test
     fun `iterate rows throws IllegalArgumentException on bad path`() {
-        val testAggFunc = fun (_ : Array<List<String>?>){} // MOCKS!!!
+        fun testAggFunc(){} // MOCKS!!!
         assertThrows(IllegalArgumentException::class.java) {
-            val processor = FileProcessor("BADPATH", testAggFunc)
-            processor.iterateRows()
+            val processor = FileProcessor("BADPATH")
+            processor.iterateRows(::testAggFunc)
         }
     }
 }

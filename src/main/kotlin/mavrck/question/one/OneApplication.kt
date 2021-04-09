@@ -4,6 +4,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RestController
+import kotlin.reflect.*
 
 
 val PATHNAME= "/home/jolfr/Projects/Mavrck-Q1/src/main/resources/CrunchBase-Companies-2017-09-05.csv"
@@ -17,11 +18,17 @@ fun main(args: Array<String>) {
  * Endpoint to run groupby and count
  */
 class GroupByCountResource {
-    val aggregate: AggregationFunctions = AggregationFunctions(1) // Initialize aggregation object with number of columns to aggregate over
-    val groupByCount = aggregate.GroupByCountFactory() // Call factory method to get GroupBy and Count
-    val processor: FileProcessor = FileProcessor(PATHNAME, groupByCount) // Initialize file processor object with specific aggregation function
+    val aggregate: AggregationFunctions
+    val groupByCount: KFunction<Any>
+    val processor: FileProcessor
 
-    processor.iterateRows() // Where the magic happens
+    init {
+        aggregate = AggregationFunctions(1) // Initialize aggregation object with number of columns to aggregate over
+        groupByCount = aggregate.GroupByCountFactory() // Call factory method to get GroupBy and Count
+        processor = FileProcessor(PATHNAME) // Initialize file processor object
+    }
+
+    //processor.iterateRows(groupByCount) // MAGIC
 }
 
 @RestController
