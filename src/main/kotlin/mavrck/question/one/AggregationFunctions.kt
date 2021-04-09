@@ -18,6 +18,6 @@ class AggregationFunctions(val columns: Int) {
         fun groupByCount():Int {
             return 1
         }
-        return ::groupByCount
+        return ::groupByCount // double colons is a function reference
     }
 }
