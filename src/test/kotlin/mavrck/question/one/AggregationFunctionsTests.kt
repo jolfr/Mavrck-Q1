@@ -20,5 +20,11 @@ class AggregationFunctionsTests {
         val testAggFunc = testObject.GroupByCountFactory()
         assertTrue(testAggFunc is KFunction)
     }
-}
+
+    @Test
+    fun `calling printrow factory returns function`(){
+        val testObject = AggregationFunctions(1)
+        val testFunc = testObject.PrintRowFactory()
+        assertTrue(testFunc is KFunction)
+    }
 
