@@ -24,7 +24,7 @@ class FileProcessor(val filepath: String, val aggFunc: (cells: Array<List<String
         var line: String? = null
         while ({ line = csvReader.readLine(); line }() != null) { // I have a vague understanding of why {} works in this instance, some clarification would be appreciated
             var cells = arrayOf(line?.split(",")); // Parses comma seperated values in row
-            aggFunc(cells); // 
+            aggFunc(cells);
         }
     }
 }
