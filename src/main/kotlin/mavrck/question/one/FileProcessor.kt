@@ -13,7 +13,7 @@ class FileProcessor(val filepath: String) {
      * Iterate through rows, applying aggregation function for each row
      * @param aggFunc aggregation function to act on CSV file
      */
-    fun iterateRows(aggFunc: KFunction<Any>) {
+    fun iterateRows(function: AggFunc) {
         var csvReader: BufferedReader? // initialize empty var outside try block for proper scope
         try { // NOTE this should execute in parent class constructor instead
             csvReader = BufferedReader(FileReader(filepath));
@@ -23,7 +23,7 @@ class FileProcessor(val filepath: String) {
         var line: String? = null
         while ({ line = csvReader.readLine(); line }() != null) { // I have a vague understanding of why {} works in this instance, some clarification would be appreciated
             var cells = arrayOf(line?.split(",")); // Parses comma seperated values in row
-            aggFunc.call(cells)
+            function.processRow(cells)
         }
     }
 }
