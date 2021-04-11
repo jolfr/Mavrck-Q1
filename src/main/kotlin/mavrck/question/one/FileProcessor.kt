@@ -10,11 +10,13 @@ import kotlin.reflect.*
  */
 class FileProcessor(val filepath: String) {
     var csvReader: BufferedReader
+    var columns: Array<List<String>?>
     var line: String? = null
     /* Initializes CSV reader */
     init {
         try {
             csvReader = BufferedReader(FileReader(filepath));
+            columns = arrayOf(csvReader.readLine().split(","))
         } catch (exception: FileNotFoundException) {
             throw IllegalArgumentException(exception.message); 
         } 

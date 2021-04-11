@@ -37,4 +37,14 @@ class FileProcessorTests {
         }
     }
 
+    @Test
+    fun `calling iterateRows calls function for each row`() {
+        processor = FileProcessor(FILEPATH)
+        processor.iterateRows(mockFunction)
+
+        val invocations = Mockito.mockingDetails(mockFunction).getInvocations();
+        val numberOfCalls = invocations.size
+        assertEquals(numberOfCalls, 100)
+    }
+
 }
