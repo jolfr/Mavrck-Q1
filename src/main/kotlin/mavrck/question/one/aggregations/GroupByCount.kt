@@ -1,10 +1,10 @@
 package mavrck.question.one
-
-class GroupByCountFactory(): AggFuncFactory() {
+// classes have to be open for mockito :(
+open class GroupByCountFactory(): AggFuncFactory() {
     override fun getFunction() = GroupByCount()
 }
 
-class GroupByCount: AggFunc {
+open class GroupByCount: AggFunc {
     override fun processRow(row: Array<List<String>?>): Unit {
         println(row.size)
     }
