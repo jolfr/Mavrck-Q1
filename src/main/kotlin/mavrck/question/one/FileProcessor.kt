@@ -11,7 +11,6 @@ import kotlin.reflect.*
 class FileProcessor(val filepath: String) {
     var csvReader: BufferedReader
     var columns: Array<List<String>?>
-    var line: String? = null
     /* Initializes CSV reader */
     init {
         try {
@@ -27,6 +26,7 @@ class FileProcessor(val filepath: String) {
      * @param aggFunc aggregation function to act on CSV file
      */
     fun iterateRows(function: AggFunc) {
+        var line: String? = null
         while ({ line = csvReader.readLine(); line }() != null) { // I have a vague understanding of why {} works in this instance, some clarification would be appreciated
             var cells = arrayOf(line?.split(",")); // Parses comma seperated values in row
             function.processRow(cells)
