@@ -9,18 +9,22 @@ import kotlin.reflect.*
  * @param filepath absolute path of CSV file to process
  */
 class FileProcessor(val filepath: String) {
+    var csvReader: BufferedReader
+    var line: String? = null
+    /* Initializes CSV reader */
+    init {
+        try {
+            csvReader = BufferedReader(FileReader(filepath));
+        } catch (exception: FileNotFoundException) {
+            throw IllegalArgumentException(exception.message); 
+        } 
+    }
+
     /**
      * Iterate through rows, applying aggregation function for each row
      * @param aggFunc aggregation function to act on CSV file
      */
     fun iterateRows(function: AggFunc) {
-        var csvReader: BufferedReader? // initialize empty var outside try block for proper scope
-        try { // NOTE this should execute in parent class constructor instead
-            csvReader = BufferedReader(FileReader(filepath));
-        } catch (exception: FileNotFoundException) {
-            throw IllegalArgumentException(exception.message); // SLOPPY! Illegal argument in parent instantiation
-        } 
-        var line: String? = null
         while ({ line = csvReader.readLine(); line }() != null) { // I have a vague understanding of why {} works in this instance, some clarification would be appreciated
             var cells = arrayOf(line?.split(",")); // Parses comma seperated values in row
             function.processRow(cells)

@@ -11,13 +11,13 @@ import kotlin.reflect.*
 
 @SpringBootTest
 class FileProcessorTests {
+    val FILEPATH = "/home/jolfr/Projects/Mavrck-Q1/src/main/resources/100 Sales Records.csv"
     lateinit var processor: FileProcessor
     lateinit var mockFunction: GroupByCount
     lateinit var mockFactory: GroupByCountFactory
 
     @BeforeEach
     fun setup() {
-        processor = FileProcessor("/home/jolfr/Projects/Mavrck-Q1/src/main/resources/100 Sales Records.csv")
         mockFunction = Mockito.mock(GroupByCount::class.java)
         mockFactory = Mockito.mock(GroupByCountFactory::class.java)
         Mockito.`when`(mockFactory.getFunction()).thenReturn(mockFunction)
@@ -25,7 +25,16 @@ class FileProcessorTests {
 
 
     @Test
-    fun `object initializes`() {
+    fun `initialization succeeds with proper path`() {
+        processor = FileProcessor(FILEPATH)
         assertNotNull(processor)
     }
+
+    @Test
+    fun `initialization fails with improper path`() {
+        assertThrows(IllegalArgumentException::class.java) {
+            processor = FileProcessor("BAD PATH")
+        }
+    }
+
 }
