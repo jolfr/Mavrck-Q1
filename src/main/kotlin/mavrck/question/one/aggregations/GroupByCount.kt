@@ -1,7 +1,7 @@
 package mavrck.question.one
 
 class GroupByCountFactory(): AggFuncFactory() {
-    override fun getAggFunc() = GroupByCount()
+    override fun getFunction() = GroupByCount()
 }
 
 class GroupByCount: AggFunc {

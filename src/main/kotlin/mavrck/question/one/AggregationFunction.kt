@@ -7,5 +7,5 @@ interface AggFunc {
 }
 
 abstract class AggFuncFactory {
-    abstract fun getAggFunc(): AggFunc
+    abstract fun getFunction(): AggFunc
 }
