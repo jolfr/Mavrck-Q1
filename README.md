@@ -4,7 +4,7 @@
 
 ## *Approach:*
 
-The two components of this exercise, the file processor and the custom function are decoupled and declared in FileProcessor.kt and aggregations/GroupByCount.kt respectively. I approached it in this way to improve testability, and have completed very lightweight unit testing on each component.
+The two components of this exercise, the file processor and the custom aggregation function are decoupled and declared in [FileProcessor.kt](https://github.com/jolfr/Mavrck-Q1/blob/main/src/main/kotlin/mavrck/question/one/FileProcessor.kt) and [GroupByCount.kt](https://github.com/jolfr/Mavrck-Q1/blob/main/src/main/kotlin/mavrck/question/one/aggregations/GroupByCount.kt) respectively. I approached it in this way to improve testability, and have completed very lightweight unit testing on each component.
 
 ### Deployment
 
