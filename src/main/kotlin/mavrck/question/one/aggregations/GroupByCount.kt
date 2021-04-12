@@ -2,11 +2,17 @@ package mavrck.question.one
 
 import kotlin.collections.MutableSet
 import kotlin.collections.MutableMap.MutableEntry
-// classes have to be open for mockito :(
-open class GroupByCountFactory(): AggFuncFactory() {
+/**
+ * Concrete implementation of abstract AggFuncFactory
+ */
+open class GroupByCountFactory(): AggFuncFactory() { // classes have to be open for mockito :(
     override fun getFunction(colsOfInterest: Set<Int>) = GroupByCount(colsOfInterest)
 }
 
+/**
+ * Concrete implmenetation of interface AggFunc
+ * @param colsOfInterest set of column numbers to perform aggregations on
+ */
 open class GroupByCount(colsOfInterest: Set<Int>): AggFunc {
     override val columns: Set<Int>
     init {
