@@ -33,13 +33,22 @@ class GroupByCountTests{
         val row: List<String> = listOf("zero", "one", "two")
         groupByCount.AddOrAppend(row)
         groupByCount.AddOrAppend(row)
+        assertTrue(groupByCount.aggEntries.containsKey(row))
         val count = groupByCount.aggEntries.get(row)
         assertEquals(count, 2)
     }
 
     @Test
     fun `AddOrAppend appends new entry to list`() {
-        val row1: List<String>? = listOf("zero", "one", "two")
-        val row2: List<String>? = listOf("three", "four", "five")
+        val row1: List<String> = listOf("zero", "one", "two")
+        val row2: List<String> = listOf("three", "four", "five")
+        groupByCount.AddOrAppend(row1)
+        groupByCount.AddOrAppend(row2)
+        assertTrue(groupByCount.aggEntries.containsKey(row1))
+        assertTrue(groupByCount.aggEntries.containsKey(row2))
+        val count1 = groupByCount.aggEntries.get(row1)
+        val count2 = groupByCount.aggEntries.get(row2)
+        assertEquals(count1, 1)
+        assertEquals(count2, 1)
     }
 }
