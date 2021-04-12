@@ -4,6 +4,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.RequestParam
 import kotlin.reflect.*
 
 
@@ -17,18 +18,16 @@ fun main(args: Array<String>) {
 /**
  * Endpoint to run groupby and count
  */
-class GroupByCountResource {
-    //val aggregate: AggregationFunction
-    //val groupByCount: KFunction<Any>
-    //val processor: FileProcessor
-
-    init {
-        //aggregate = AggregationFunctions(1) // Initialize aggregation object with number of columns to aggregate over
-        //groupByCount = aggregate.GroupByCountFactory() // Call factory method to get GroupBy and Count
-        //processor = FileProcessor(PATHNAME) // Initialize file processor object
+@RestController
+class AggResources {
+    
+    @GetMapping("/groupby/count")
+    fun GroupByCountResource(@RequestParam(value="columns") columns: Array<Int>): MutableMap<List<String>, Int> {
+        val colsOfInterest = columns.toSet()
+        val controller = GroupByCountController(PATHNAME, colsOfInterest)
+        controller.executeAggregation()
+        return controller.getResult()
     }
-
-    //processor.iterateRows(groupByCount) // MAGIC
 }
 
 @RestController

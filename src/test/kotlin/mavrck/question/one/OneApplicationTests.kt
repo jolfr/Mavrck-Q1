@@ -11,10 +11,4 @@ class OneApplicationTests {
 	fun contextLoads() {
 	} 
 
-	@Test
-	fun `group by count can be called`() {
-		val testObject = GroupByCountResource()
-		assertNotNull(testObject)
-	}
-
 }
