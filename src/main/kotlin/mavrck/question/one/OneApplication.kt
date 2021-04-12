@@ -32,7 +32,7 @@ class AggResources {
     }
 
     /**
-     * Helper method to format the response data in the specified form
+     * Helper function to format the response data in the specified form
      * @param aggEntries aggregation entries fetched by getResult
      * @return 2D list conforming to response spec
      */
