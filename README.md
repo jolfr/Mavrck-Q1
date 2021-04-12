@@ -8,4 +8,4 @@ The two components of this exercise, the file processor and the custom function 
 
 ### Deployment
 
-Ran the project locally and tested with Postman. Have yet to containerize it; approach would be to use multi-stage build that copies over the JRE. Single stage builds leave behind the build artifacts and run using the JDK instead of the JRE. As far as documentation is concerned, I've already generated the OpenApiV3 json for the one endpoint, but stumbled on setting up Swagger for a nice UI. Generating spec docs directly from the code saves time.
+Ran the project locally and tested with Postman. Have yet to containerize it; approach would be to use multi-stage build that copies over the JRE. Single stage builds leave behind the build artifacts and run using the JDK instead of the JRE. As far as documentation is concerned, I've already generated the OpenApiV3 json for the one endpoint, but stumbled on setting up Swagger for a nice UI. Generating spec docs directly from the code saves time. I've also filled out docstrings for some internal functions, but have yet to fully cover the codebase.
