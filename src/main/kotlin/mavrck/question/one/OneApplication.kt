@@ -18,14 +18,14 @@ fun main(args: Array<String>) {
  * Endpoint to run groupby and count
  */
 class GroupByCountResource {
-    val aggregate: AggregationFunctions
-    val groupByCount: KFunction<Any>
-    val processor: FileProcessor
+    //val aggregate: AggregationFunction
+    //val groupByCount: KFunction<Any>
+    //val processor: FileProcessor
 
     init {
-        aggregate = AggregationFunctions(1) // Initialize aggregation object with number of columns to aggregate over
-        groupByCount = aggregate.GroupByCountFactory() // Call factory method to get GroupBy and Count
-        processor = FileProcessor(PATHNAME) // Initialize file processor object
+        //aggregate = AggregationFunctions(1) // Initialize aggregation object with number of columns to aggregate over
+        //groupByCount = aggregate.GroupByCountFactory() // Call factory method to get GroupBy and Count
+        //processor = FileProcessor(PATHNAME) // Initialize file processor object
     }
 
     //processor.iterateRows(groupByCount) // MAGIC

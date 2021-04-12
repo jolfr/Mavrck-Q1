@@ -20,7 +20,7 @@ class FileProcessorTests {
     fun setup() {
         mockFunction = Mockito.mock(GroupByCount::class.java)
         mockFactory = Mockito.mock(GroupByCountFactory::class.java)
-        Mockito.`when`(mockFactory.getFunction()).thenReturn(mockFunction)
+        Mockito.`when`(mockFactory.getFunction((0..1).toSet())).thenReturn(mockFunction)
     }
 
 

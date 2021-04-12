@@ -6,7 +6,7 @@ import kotlin.collections.MutableMap.MutableEntry
 
 interface AggFunc {
     val columns: Set<Int>
-    fun processRow(row: Array<List<String>?>): Unit
+    fun processRow(row: List<String>?): Unit
 }
 
 abstract class AggFuncFactory {
