@@ -27,8 +27,24 @@ class AggResources {
         val colsOfInterest = columns.toSet()
         val controller = GroupByCountController(PATHNAME, colsOfInterest)
         controller.executeAggregation()
-        val result = controller.getResult().toMap().flatMap { (key, values) -> key.plus(listOf(values)) }
-        return result
+        val result = controller.getResult()
+        return formatResponse(result)
+    }
+
+    /**
+     * Helper method to format the response data in the specified form
+     * @param aggEntries aggregation entries fetched by getResult
+     * @return 2D list conforming to response spec
+     */
+    fun formatResponse(aggEntries: MutableMap<List<String>, Int>): List<List<String>> {
+        var response: MutableList<List<String>> = mutableListOf()
+        var entry: MutableList<String> 
+        for((k, v) in aggEntries) {
+            entry = k.toMutableList()
+            entry.add(v.toString())
+            response.add(entry)
+        }
+        return response
     }
 
 }
