@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RestController
 import org.springframework.web.bind.annotation.RequestParam
 import kotlin.reflect.*
+import kotlin.collections.*
 
 
 val PATHNAME= "/home/jolfr/Projects/Mavrck-Q1/src/main/resources/CrunchBase-Companies-2017-09-05.csv"
@@ -22,12 +23,14 @@ fun main(args: Array<String>) {
 class AggResources {
     
     @GetMapping("/groupby/count")
-    fun GroupByCountResource(@RequestParam(value="columns") columns: Array<Int>): MutableMap<List<String>, Int> {
+    fun GroupByCountResource(@RequestParam(value="columns") columns: Array<Int>): List<Any> {
         val colsOfInterest = columns.toSet()
         val controller = GroupByCountController(PATHNAME, colsOfInterest)
         controller.executeAggregation()
-        return controller.getResult()
+        val result = controller.getResult().toMap().flatMap { (key, values) -> key.plus(listOf(values)) }
+        return result
     }
+
 }
 
 @RestController
