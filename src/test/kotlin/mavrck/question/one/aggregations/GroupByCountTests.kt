@@ -27,4 +27,19 @@ class GroupByCountTests{
         assertNotNull(actual)
         assertLinesMatch(expected, actual)
     }
+
+    @Test
+    fun `AddOrAppend adds two counts`() {
+        val row: List<String> = listOf("zero", "one", "two")
+        groupByCount.AddOrAppend(row)
+        groupByCount.AddOrAppend(row)
+        val count = groupByCount.aggEntries.get(row)
+        assertEquals(count, 2)
+    }
+
+    @Test
+    fun `AddOrAppend appends new entry to list`() {
+        val row1: List<String>? = listOf("zero", "one", "two")
+        val row2: List<String>? = listOf("three", "four", "five")
+    }
 }

@@ -9,10 +9,10 @@ open class GroupByCountFactory(): AggFuncFactory() {
 
 open class GroupByCount(colsOfInterest: Set<Int>): AggFunc {
     override val columns: Set<Int>
-    var aggEntries: MutableMap<List<String>, Int>? = null
     init {
         columns = colsOfInterest
     }
+    var aggEntries: MutableMap<List<String>, Int> = mutableMapOf()
 
     override fun processRow(row: List<String>?): Unit {
         println(row?.size)
@@ -22,5 +22,15 @@ open class GroupByCount(colsOfInterest: Set<Int>): AggFunc {
         var result = mutableListOf<String>()
         columns.forEach{ result.add(row!!.get(it)) }
         return result
+    }
+
+    fun AddOrAppend(entries: List<String>) {
+        var count: Int
+        if(aggEntries.containsKey(entries)) {
+            count = aggEntries[entries]!!.plus(1)
+        } else {
+            count = 1
+        }
+        aggEntries.put(entries, count)
     }
 }
