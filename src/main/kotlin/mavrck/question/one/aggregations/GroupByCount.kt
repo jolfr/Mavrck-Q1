@@ -15,7 +15,8 @@ open class GroupByCount(colsOfInterest: Set<Int>): AggFunc {
     var aggEntries: MutableMap<List<String>, Int> = mutableMapOf()
 
     override fun processRow(row: List<String>?): Unit {
-        println(row?.size)
+        val entries = getEntriesOfInterest(row)
+        AddOrAppend(entries!!)
     }
 
     fun getEntriesOfInterest(row: List<String>?): List<String>? {
