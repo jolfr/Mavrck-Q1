@@ -17,11 +17,16 @@ fun main(args: Array<String>) {
 	runApplication<OneApplication>(*args)
 }
 /**
- * Endpoint to run groupby and count
+ * Endpoint to run aggregation functions
  */
 @RestController
 class AggResources {
     
+    /**
+     * Endpoint for groupby and count
+     * @param columns array of column numbers to aggregate over
+     * @return formatted response back to user
+     */
     @GetMapping("/groupby/count")
     fun GroupByCountResource(@RequestParam(value="columns") columns: Array<Int>): List<Any> {
         val colsOfInterest = columns.toSet()
