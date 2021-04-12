@@ -29,7 +29,8 @@ class FileProcessor(val filepath: String) {
     fun iterateRows(function: AggFunc) {
         var line: String? = null
         while ({ line = csvReader.readLine(); line }() != null) { // I have a vague understanding of why {} works in this instance, some clarification would be appreciated
-            var cells:List<String>? = line?.split(","); // Parses comma seperated values in row
+            val pattern = "\\,(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)".toRegex() // https://stackoverflow.com/questions/46284336/ignore-comma-between-double-quotes-while-reading-csv-file/46331228
+            var cells:List<String>? = pattern.split(line!!); // Parses comma seperated values in row
             function.processRow(cells)
         }
     }
